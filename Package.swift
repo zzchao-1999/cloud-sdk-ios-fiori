@@ -25,6 +25,9 @@ let package = Package(
             targets: ["FioriThemeManager"]
         )
     ],
+    dependencies: [
+        .package(url: "https://github.com/workaroundgmbh/pg-connect-sdk-ios", .upToNextMajor(from: "1.8.0"))
+    ],
     targets: [
         .target(
             name: "FioriSwiftUI",

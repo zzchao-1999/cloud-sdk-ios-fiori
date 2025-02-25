@@ -1,4 +1,7 @@
 import SwiftUI
+#if canImport(ConnectSDK)
+import ConnectSDK
+#endif
 
 public struct BarcodeScannerView: View {
     @State private var textFieldText: String = ""
@@ -8,25 +11,26 @@ public struct BarcodeScannerView: View {
     
     public var body: some View {
         VStack {
-            TextField("Enter text or scan result", text: $textFieldText)
-               .textFieldStyle(RoundedBorderTextFieldStyle())
-               .padding()
-
-            Button(action: {
-                // Simulate scanning action
-                self.isScanning = true
-                DispatchQueue.main.asyncAfter(deadline: .now() + 2) {
-                    self.textFieldText = "Scanned result"
-                    self.isScanning = false
-                }
-            }) {
-                if isScanning {
-                    Text("Scanning...")
-                } else {
-                    Text("Scan")
+            HStack {
+                TextField("Enter text or scan result", text: $textFieldText)
+                   .textFieldStyle(RoundedBorderTextFieldStyle())
+                Button(action: {
+                    // Simulate scanning action
+                    self.isScanning = true
+                    DispatchQueue.main.asyncAfter(deadline: .now() + 2) {
+                        self.textFieldText = "Scanned result"
+                        self.isScanning = false
+                    }
+                }) {
+                    Image(systemName: "barcode.viewfinder")
+                        .font(.largeTitle)
+                        .disabled(self.isScanning)
                 }
             }
-           .padding()
+#if canImport(ConnectSDK)
+            Text("ConnectSDK Version: \(ConnectSDKVersionStringObject)")
+                .foregroundStyle(Color.yellow)
+#endif
         }
     }
 }
