@@ -90,7 +90,39 @@ struct CoreContentView: View {
                 {
                     Text("(Deprecated)Customized Signature Inline View")
                 }
-                
+            }
+            
+            Section(header: Text("Scanner")) {
+                NavigationLink(
+                    destination: StartNewConnectionExample(),
+                    label: {
+                        Text("Start New Connection")
+                    }
+                )
+                NavigationLink(
+                    destination: ProGloveScannerExample(),
+                    label: {
+                        Text("ProGlove Scanner")
+                    }
+                )
+                NavigationLink(
+                    destination: IPCMobileScannerExample(),
+                    label: {
+                        Text("IPCMobile Scanner")
+                    }
+                )
+                NavigationLink(
+                    destination: VisionKitScannerExample(),
+                    label: {
+                        Text("VisionKit Scanner")
+                    }
+                )
+                NavigationLink(
+                    destination: BarcodeScannerViewExample(),
+                    label: {
+                        Text("Barcode Scanner View ")
+                    }
+                )
                 NavigationLink(
                     destination: DocumentScannerViewExample())
                 {
